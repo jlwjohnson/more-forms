@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="73be2c8" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0" camunda:diagramRelationId="cede976d-ad46-4c79-9189-b6b1ab5f97f5">
+  <bpmn:process id="process_accessExtApp" name="Access External Application" isExecutable="true">
+    <bpmn:startEvent id="Event_startAccess" name="Start Access">
+      <bpmn:outgoing>Flow_01b2hgl</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_creditScoreProvided" name="Credit score provided">
+      <bpmn:incoming>Flow_01rs6os</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_01b2hgl" sourceRef="Event_startAccess" targetRef="Task_generateCreditScore" />
+    <bpmn:userTask id="Task_generateCreditScore" name="Generate Credit Score">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formId="Form_ExternalAppWork" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01b2hgl</bpmn:incoming>
+      <bpmn:outgoing>Flow_01rs6os</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_01rs6os" sourceRef="Task_generateCreditScore" targetRef="Event_creditScoreProvided" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process_accessExtApp">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Event_startAccess">
+        <dc:Bounds x="152" y="82" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="140" y="125" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ax3ce2_di" bpmnElement="Event_creditScoreProvided">
+        <dc:Bounds x="562" y="82" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="550" y="125" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_15qjjil_di" bpmnElement="Task_generateCreditScore">
+        <dc:Bounds x="340" y="60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01b2hgl_di" bpmnElement="Flow_01b2hgl">
+        <di:waypoint x="188" y="100" />
+        <di:waypoint x="340" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01rs6os_di" bpmnElement="Flow_01rs6os">
+        <di:waypoint x="440" y="100" />
+        <di:waypoint x="562" y="100" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
