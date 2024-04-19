@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="aef0a42" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0" camunda:diagramRelationId="ff48559e-d6a6-45b5-a62f-83d55d60df6b">
+  <bpmn:process id="Process_claimReview" name="Test Claim Review" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_Start" name="Start Review">
+      <bpmn:outgoing>Flow_0pfsfme</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_endReview" name="End Review">
+      <bpmn:incoming>Flow_05yssc1</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0pfsfme" sourceRef="StartEvent_Start" targetRef="Task_reviewClaim" />
+    <bpmn:userTask id="Task_reviewClaim" name="Review Claim">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="Form_CarInsuranceClaimReview" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0pfsfme</bpmn:incoming>
+      <bpmn:outgoing>Flow_05yssc1</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_05yssc1" sourceRef="Task_reviewClaim" targetRef="Event_endReview" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_claimReview">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_Start">
+        <dc:Bounds x="192" y="82" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="179" y="125" width="63" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_05ese5n_di" bpmnElement="Event_endReview">
+        <dc:Bounds x="632" y="82" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="621" y="125" width="59" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1mj6pau_di" bpmnElement="Task_reviewClaim">
+        <dc:Bounds x="380" y="60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0pfsfme_di" bpmnElement="Flow_0pfsfme">
+        <di:waypoint x="228" y="100" />
+        <di:waypoint x="380" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05yssc1_di" bpmnElement="Flow_05yssc1">
+        <di:waypoint x="480" y="100" />
+        <di:waypoint x="632" y="100" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
